@@ -1297,6 +1297,10 @@ MyString& MyString::Erase(size_t index, size_t count) {
 }
 
 int MyString::Find(MyString const& other, size_t index) {
+	if (nullptr == m_pstr || nullptr == other.m_pstr) {
+		return -1;
+	}
+
 	size_t indexStr = 0;
 	while ('\0' != m_pstr[indexStr]) {
 		if (m_pstr[indexStr] == other.m_pstr[0]) {
@@ -1327,6 +1331,10 @@ int MyString::Find(MyString const& other, size_t index) {
 }
 
 int MyString::Find(char const* str, size_t index) {
+	if (nullptr == m_pstr || nullptr == str) {
+		return -1;
+	}
+
 	size_t indexStr = 0;
 	while ('\0' != m_pstr[indexStr]) {
 		if (m_pstr[indexStr] == str[0]) {
@@ -1357,6 +1365,10 @@ int MyString::Find(char const* str, size_t index) {
 }
 
 int MyString::Find(char const* str, size_t index, size_t len) {
+	if (nullptr == m_pstr || nullptr == str) {
+		return -1;
+	}
+
 	size_t indexStr = 0;
 	while ('\0' != m_pstr[indexStr] && len > 0) {
 		if (m_pstr[indexStr] == str[0]) {
@@ -1388,6 +1400,9 @@ int MyString::Find(char const* str, size_t index, size_t len) {
 }
 
 int MyString::Find(char ch, size_t index) {
+	if (nullptr == m_pstr) {
+		return -1;
+	}
 	size_t indexStr = 0;
 	while ('\0' != m_pstr[indexStr]) {
 		if (m_pstr[indexStr] == ch) {
@@ -1401,6 +1416,10 @@ int MyString::Find(char ch, size_t index) {
 }
 
 size_t MyString::RFind(MyString const& other, size_t index) {
+	if (nullptr == m_pstr || nullptr == other.m_pstr) {
+		return -1;
+	}
+
 	size_t count = 0;
 	while ('\0' != m_pstr[index]) {
 		size_t indexStr = 0;
@@ -1414,10 +1433,15 @@ size_t MyString::RFind(MyString const& other, size_t index) {
 
 		++index;
 	}
+
 	return count;
 }
 
 size_t MyString::RFind(char const* str, size_t index) {
+	if (nullptr == m_pstr || nullptr == str) {
+		return -1;
+	}
+
 	size_t count = 0;
 	while ('\0' != m_pstr[index]) {
 		size_t indexStr = 0;
@@ -1431,10 +1455,15 @@ size_t MyString::RFind(char const* str, size_t index) {
 
 		++index;
 	}
+
 	return count;
 }
 
 size_t MyString::RFind(char const* str, size_t index, size_t len) {
+	if (nullptr == m_pstr || nullptr == str) {
+		return -1;
+	}
+
 	size_t count = 0;
 	while ('\0' != m_pstr[index] && len > 0) {
 		size_t indexStr = 0;
@@ -1449,10 +1478,15 @@ size_t MyString::RFind(char const* str, size_t index, size_t len) {
 		++index;
 		--len;
 	}
+
 	return count;
 }
 
 size_t MyString::RFind(char ch, size_t index) {
+	if (nullptr==m_pstr) {
+		return -1;
+	}
+
 	size_t count = 0;
 	while ('\0' != m_pstr[index]) {
 		if (m_pstr[index] == ch) {
@@ -1461,6 +1495,7 @@ size_t MyString::RFind(char ch, size_t index) {
 
 		++index;
 	}
+
 	return count;
 }
 
