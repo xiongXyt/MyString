@@ -1517,7 +1517,7 @@ size_t MyString::FindFirst(MyString const& other, size_t index) {
 		return 0;
 	}
 	else {
-		return 0;
+		return -1;
 	}
 }
 
@@ -1539,7 +1539,7 @@ size_t MyString::FindFirst(char const* str, size_t index) {
 		return 0;
 	}
 	else {
-		return 0;
+		return -1;
 	}
 }
 
@@ -1562,7 +1562,7 @@ size_t MyString::FindFirst(char const* str, size_t index, size_t len) {
 		return 0;
 	}
 	else {
-		return 0;
+		return -1;
 	}
 }
 
@@ -1577,7 +1577,7 @@ size_t MyString::FindFirst(char ch, size_t index) {
 		}
 	}
 	else {
-		return 0;
+		return -1;
 	}
 }
 
@@ -1600,7 +1600,7 @@ size_t MyString::FindFirstNot(MyString const& other, size_t index) {
 		return count;
 	}
 	else {
-		return 0;
+		return -1;
 	}
 }
 
@@ -1623,7 +1623,7 @@ size_t MyString::FindFirstNot(char const* str, size_t index) {
 		return count;
 	}
 	else {
-		return 0;
+		return -1;
 	}
 }
 
@@ -1647,7 +1647,7 @@ size_t MyString::FindFirstNot(char const* str, size_t index, size_t len) {
 		return count;
 	}
 	else {
-		return 0;
+		return -1;
 	}
 }
 
@@ -1665,7 +1665,7 @@ size_t MyString::FindFirstNot(char ch, size_t index) {
 		return count;
 	}
 	else {
-		return 0;
+		return -1;
 	}
 }
 
