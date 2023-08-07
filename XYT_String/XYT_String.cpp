@@ -1263,33 +1263,35 @@ bool MyString::Empty() {
 	}
 }
 
-/*************************************************************************/
-/* 上次做的修改 */
+// 这里的删除可能还有一点问题
 MyString& MyString::Erase(size_t index, size_t count) {
-	size_t strlen = m_strLen;
-	char* pstrTemp = new char[m_strLen];
-	XYTStrCpy(pstrTemp, m_pstr);
+	if (nullptr != m_pstr && m_strLen > 0) {
+		size_t strlen = m_strLen;
+		char* pstrTemp = new char[m_strLen];
+		StrCpy(pstrTemp, m_pstr);
 
-	if (nullptr != m_pstr) {
-		ClearStr();
-	}
-
-	while (m_capacity <= (m_strLen + strlen - count)) {
-		AddCapacity();
-	}
-
-	size_t indexstr = 0;
-	size_t indexTemp = 0;
-	while ('\0' != pstrTemp[indexTemp]) {
-		if ((indexTemp >= index && indexTemp <= count)) {
-			m_pstr[indexstr] = pstrTemp[indexTemp];
-			++indexstr;
+		if (nullptr != m_pstr) {
+			ClearStr();
 		}
 
-		++indexTemp;
-	}
+		while (m_capacity <= (m_strLen + strlen - count)) {
+			AddCapacity();
+		}
 
-	m_pstr[indexstr] = '\0';
+		size_t indexstr = 0;
+		size_t indexTemp = 0;
+		while ('\0' != pstrTemp[indexTemp]) {
+			if ((indexTemp == index)) {
+				indexTemp += count + 1;
+			}
+			m_pstr[indexstr] = pstrTemp[indexTemp];
+
+			++indexstr;
+			++indexTemp;
+		}
+
+		m_pstr[indexstr] = '\0';
+	}
 
 	return *this;
 }
