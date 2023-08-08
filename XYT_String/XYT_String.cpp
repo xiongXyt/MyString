@@ -694,8 +694,8 @@ MyString& MyString::operator=(MyString const& other) {
 			AddCapacity();
 		}
 
-		XYTStrCat((m_pstr), other.m_pstr);
-		m_strLen = XYTStrLen(m_pstr);
+		StrCpy((m_pstr), other.m_pstr);
+		m_strLen = GetLen();
 	}
 
 	return *this;
@@ -713,8 +713,8 @@ MyString& MyString::operator=(MyString const* const pother) {
 			AddCapacity();
 		}
 
-		XYTStrCat((m_pstr), pother->m_pstr);
-		m_strLen = XYTStrLen(m_pstr);
+		StrCpy((m_pstr), pother->m_pstr);
+		m_strLen = GetLen();
 	}
 
 	return *this;
@@ -857,7 +857,7 @@ char* const MyString::StrNCpy(char* const to, char const* const from, size_t cou
 	return to;
 }
 
-int MyString::StrCmp(char const* const str1, char const* const str2) {
+int MyString::StrCmp(char const* const str1, char const* const str2) const{
 	if (nullptr != str1 && nullptr == str2) {
 		return 10;
 	}
@@ -893,7 +893,7 @@ int MyString::StrCmp(char const* const str1, char const* const str2) {
 	return 0;
 }
 
-int MyString::StrNCmp(char const* const str1, char const* const str2, size_t count) {
+int MyString::StrNCmp(char const* const str1, char const* const str2, size_t count) const{
 	if (nullptr != str1 && nullptr == str2) {
 		return 10;
 	}
@@ -979,7 +979,7 @@ MyString& MyString::Append(char const& const str) {
 }
 
 MyString& MyString::Append(char const* const str) {
-	size_t strlen = XYTStrLen(str);
+	size_t strlen = StrLen(str);
 
 	while (m_capacity <= (m_strLen + strlen)) {
 		AddCapacity();
@@ -1005,7 +1005,7 @@ MyString& MyString::Append(MyString const& other) {
 
 MyString& MyString::Append(char const* const str, size_t index, size_t len) {
 	if (nullptr != str) {
-		size_t strlen = XYTStrLen((str + index));
+		size_t strlen = StrLen((str + index));
 
 		while (m_capacity <= (m_strLen + strlen)) {
 			AddCapacity();
@@ -1686,7 +1686,7 @@ size_t MyString::GetMaxStr() {
 }
 
 bool operator>(MyString const& str, MyString const& other) {
-	if (XYTStrCmp(str.m_pstr, other.m_pstr) > 0) {
+	if (str.StrCmp(str.m_pstr, other.m_pstr) > 0) {
 		return true;
 	}
 	else {
@@ -1695,7 +1695,7 @@ bool operator>(MyString const& str, MyString const& other) {
 }
 
 bool operator<(MyString const& str, MyString const& other) {
-	if (XYTStrCmp(str.m_pstr, other.m_pstr) < 0) {
+	if (str.StrCmp(str.m_pstr, other.m_pstr) < 0) {
 		return true;
 	}
 	else {
@@ -1704,7 +1704,7 @@ bool operator<(MyString const& str, MyString const& other) {
 }
 
 bool operator>=(MyString const& str, MyString const& other) {
-	if (XYTStrCmp(str.m_pstr, other.m_pstr) >= 0) {
+	if (str.StrCmp(str.m_pstr, other.m_pstr) >= 0) {
 		return true;
 	}
 	else {
@@ -1713,7 +1713,7 @@ bool operator>=(MyString const& str, MyString const& other) {
 }
 
 bool operator<=(MyString const& str, MyString const& other) {
-	if (XYTStrCmp(str.m_pstr, other.m_pstr) <= 0) {
+	if (str.StrCmp(str.m_pstr, other.m_pstr) <= 0) {
 		return true;
 	}
 	else {
@@ -1722,7 +1722,7 @@ bool operator<=(MyString const& str, MyString const& other) {
 }
 
 bool operator==(MyString const& str, MyString const& other) {
-	if (0 == XYTStrCmp(str.m_pstr, other.m_pstr)) {
+	if (0 == str.StrCmp(str.m_pstr, other.m_pstr)) {
 		return true;
 	}
 	else {
@@ -1731,7 +1731,7 @@ bool operator==(MyString const& str, MyString const& other) {
 }
 
 bool operator!=(MyString const& str, MyString const& other) {
-	if (0 != XYTStrCmp(str.m_pstr, other.m_pstr)) {
+	if (0 != str.StrCmp(str.m_pstr, other.m_pstr)) {
 		return true;
 	}
 	else {

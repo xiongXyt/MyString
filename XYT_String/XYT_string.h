@@ -1,8 +1,6 @@
 #ifndef XYT_STRING_H_
 #define XYT_STRING_H_
 #include<iostream>
-#include "include/XYTString.h"
-#pragma comment(lib,"./lib/XYTString.lib")
 using namespace std;
 
 #define CLENGTH 10
@@ -193,8 +191,10 @@ protected:
 	// ×Ö·û¿½±´
 	char* const StrCpy(char* const to, char const* const from);
 	char* const StrNCpy(char* const to, char const* const from, size_t count);
-	int StrCmp(char const* const str1, char const* const str2);
-	int StrNCmp(char const* const str1, char const* const str2, size_t count);
+
+	// ×Ö·û´®±È½Ï
+	int StrCmp(char const* const str1, char const* const str2)const;
+	int StrNCmp(char const* const str1, char const* const str2, size_t count)const;
 
 public:
 	/* ************************************************************ */
